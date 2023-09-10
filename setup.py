@@ -1,4 +1,4 @@
-from version import VERSION
+from openpay.version import VERSION
 import os
 import sys
 
