@@ -1,3 +1,4 @@
+from version import VERSION
 import os
 import sys
 
@@ -22,7 +23,6 @@ install_requires = [requests, "future==0.15.2"]
 
 # Don't import openpay module here, since deps may not be installed
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'openpay'))
-from version import VERSION
 
 # Get simplejson if we don't already have json
 if sys.version_info < (3, 0):
@@ -43,5 +43,4 @@ setup(name='openpay',
       package_data={'openpay': ['data/ca-certificates.crt', '../VERSION']},
       install_requires=install_requires,
       test_suite='openpay.test.all',
-      use_2to3=True,
       )
