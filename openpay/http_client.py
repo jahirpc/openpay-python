@@ -1,6 +1,6 @@
 from __future__ import unicode_literals
-from future.builtins import str
-from future.builtins import bytes
+from builtins import str
+from builtins import bytes
 
 import os
 import sys
@@ -14,7 +14,8 @@ from openpay import error
 # - Use Pycurl if it's there (at least it verifies SSL certs)
 # - Fall back to urllib2 with a warning if needed
 try:
-    import ssl, urllib2
+    import ssl
+    import urllib2
     # import contextlib
 except ImportError:
     import urllib.request

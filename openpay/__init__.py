@@ -1,5 +1,7 @@
 from __future__ import unicode_literals
-from future.builtins import str
+import sys as _sys
+# from future.builtins import str
+from builtins import str
 from openpay.util import logger
 api_key = None
 merchant_id = None
@@ -22,13 +24,12 @@ from openpay.error import (  # noqa
     InvalidRequestError)
 
 
-#from openpay.resource import (
+# from openpay.resource import (
 #    convert_to_openpay_object, BaseObject, APIResource)
-#from openpay.util import logger
+# from openpay.util import logger
 
-import sys as _sys
-#import warnings as _warnings
-#from inspect import isclass as _isclass, ismodule as _ismodule
+# import warnings as _warnings
+# from inspect import isclass as _isclass, ismodule as _ismodule
 
 _dogetattr = object.__getattribute__
 _ALLOWED_ATTRIBUTES = (
@@ -44,9 +45,11 @@ _original_module = _sys.modules[__name__]
 def get_api_base():
     api_base = None
     if country is None or (country != "mx" and country != "co" and country != "pe"):
-        errorMessage = "Country is " + country + ", you can set country with value 'mx', 'co' or 'pe', Mexico, Colombia or Peru respectively"
+        errorMessage = "Country is " + country + \
+            ", you can set country with value 'mx', 'co' or 'pe', Mexico, Colombia or Peru respectively"
         logger.error(errorMessage)
-        raise error.InvalidCountryError(errorMessage, None, None, 400, None)
+        # raise error.InvalidCountryError(errorMessage, None, None, 400, None)
+        raise ValueError(errorMessage)
     if country == "mx":
         logger.info("Country Mexico")
         if not production:

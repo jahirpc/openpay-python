@@ -30,7 +30,10 @@ if sys.version_info < (3, 0):
         import json
     except ImportError:
         install_requires.append('simplejson')
+install_requires = [
+    'requests',
 
+]
 setup(name='openpay',
       cmdclass={'build_py': build_py},
       version=VERSION,

@@ -10,9 +10,9 @@ try:
 except ImportError:
     from urllib.parse import quote_plus
 
-from future.builtins import super
-from future.builtins import hex
-from future.builtins import str
+from builtins import super
+from builtins import hex
+from builtins import str
 import openpay
 from openpay import api, error
 from openpay.util import utf8, logger
@@ -331,7 +331,7 @@ class UpdateableAPIResource(APIResource):
             # i.e. as object.metadata = {key: val}
             metadata_update = self.metadata
             keys_to_unset = set(self._previous_metadata.keys()) - \
-                            set(self.metadata.keys())
+                set(self.metadata.keys())
             for key in keys_to_unset:
                 metadata_update[key] = ""
 
@@ -575,7 +575,7 @@ class Customer(CreateableAPIResource, UpdateableAPIResource,
         data = {
             'object': 'list',
             'count': 0,
-            'url':Pse.build_url(self.id),
+            'url': Pse.build_url(self.id),
             'item_type': 'pse'
         }
         if not hasattr(self, '_pse'):
@@ -587,7 +587,7 @@ class Customer(CreateableAPIResource, UpdateableAPIResource,
         data = {
             'object': 'list',
             'count': 0,
-            'url':Checkout.build_url(self.id),
+            'url': Checkout.build_url(self.id),
             'item_type': 'checkout'
         }
         if not hasattr(self, '_checkouts'):
@@ -709,6 +709,7 @@ class Webhook(CreateableAPIResource, ListableAPIResource, DeletableAPIResource):
         if webhook_id is not None:
             return "/v1/{0}/webhooks/{1}".format(merchant_id, webhook_id)
 
+
 class Checkout(CreateableAPIResource,
                UpdateableAPIResource, ListableAPIResource):
 
@@ -761,7 +762,7 @@ class Checkout(CreateableAPIResource,
             # i.e. as object.metadata = {key: val}
             metadata_update = self.metadata
             keys_to_unset = set(self._previous_metadata.keys()) - \
-                            set(self.metadata.keys())
+                set(self.metadata.keys())
             for key in keys_to_unset:
                 metadata_update[key] = ""
 
@@ -790,6 +791,7 @@ class Checkout(CreateableAPIResource,
         base = self.class_url()
         extn = quote_plus(id)
         return "%s/%s?status=%s" % (base, extn, status)
+
 
 class Token(CreateableAPIResource):
     pass
